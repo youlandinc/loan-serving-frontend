@@ -270,6 +270,7 @@ export const LayoutHeader: FC<LayoutHeaderProps> = observer(
               sx={{ cursor: 'pointer' }}
             >
               <Avatar
+                src={setting?.userInfo?.avatar}
                 sx={{
                   bgcolor: 'info.main',
                   width: { lg: 36, xs: 30 },
