@@ -152,6 +152,7 @@ export const LayoutHeader: FC<LayoutHeaderProps> = observer(
         if (!avatarName) {
           return '/images/pos/placeholder_avatar.png';
         }
+        return '';
       }
       return setting?.userInfo?.avatar;
     }, [avatarName, setting?.userInfo?.avatar]);
