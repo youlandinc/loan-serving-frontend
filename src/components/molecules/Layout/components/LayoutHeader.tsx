@@ -22,6 +22,7 @@ import {
   URL_PRICING,
 } from '@/constant';
 import { useSwitch } from '@/hooks';
+import { utils } from '@/utils';
 
 import { StyledButton, StyledDialog } from '@/components/atoms';
 
@@ -137,6 +138,23 @@ export const LayoutHeader: FC<LayoutHeaderProps> = observer(
       });
       return result;
     }, [initialized, licensedProduct, session?.accessToken?.jwtToken]);
+
+    const avatarName = useMemo(() => {
+      const target =
+        setting?.userInfo?.firstName?.[0] + setting?.userInfo?.lastName?.[0] ||
+        '';
+      const result = target.match(/[a-zA-Z]+/g);
+      return result ? result[0] : '';
+    }, [setting?.userInfo?.firstName, setting?.userInfo?.lastName]);
+
+    const avatarUrl = useMemo(() => {
+      if (!setting?.userInfo?.avatar) {
+        if (!avatarName) {
+          return '/images/pos/placeholder_avatar.png';
+        }
+      }
+      return setting?.userInfo?.avatar;
+    }, [avatarName, setting?.userInfo?.avatar]);
 
     return (
       <>
@@ -270,16 +288,16 @@ export const LayoutHeader: FC<LayoutHeaderProps> = observer(
               sx={{ cursor: 'pointer' }}
             >
               <Avatar
-                src={setting?.userInfo?.avatar}
+                src={avatarUrl}
                 sx={{
-                  bgcolor: 'info.main',
+                  bgcolor: utils.colorCalculator(avatarName) || 'info.main',
                   width: { lg: 36, xs: 30 },
                   height: { lg: 36, xs: 30 },
-                  fontSize: { lg: 20, xs: 18 },
+                  fontSize: { lg: 14, xs: 12 },
                   fontWeight: 600,
                 }}
               >
-                {setting?.userInfo?.name?.substring(0, 1)?.toUpperCase()}
+                {avatarName}
               </Avatar>
 
               <Tooltip

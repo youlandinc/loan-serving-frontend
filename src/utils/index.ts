@@ -76,4 +76,57 @@ export const utils = {
   notUndefined(value: unknown): boolean {
     return Object.prototype.toString.call(value).slice(8, -1) !== 'Undefined';
   },
+  colorCalculator(val: string | undefined): string {
+    const condition = val?.toLocaleUpperCase()[0];
+    let result = '';
+    switch (condition) {
+      case 'A':
+      case 'B':
+      case 'C':
+        result = '#578887';
+        break;
+      case 'D':
+      case 'E':
+      case 'F':
+        result = '#d8c9af';
+        break;
+      case 'G':
+      case 'H':
+      case 'I':
+        result = '#E99475';
+        break;
+      case 'J':
+      case 'K':
+      case 'L':
+        result = '#91cec2';
+        break;
+      case 'M':
+      case 'N':
+      case 'O':
+        result = '#b08053';
+        break;
+      case 'P':
+      case 'Q':
+      case 'R':
+        result = '#fecb4d';
+        break;
+      case 'S':
+      case 'T':
+        result = '#5ebad9';
+        break;
+      case 'U':
+      case 'V':
+        result = '#4662b2';
+        break;
+      case 'W':
+      case 'X':
+        result = '#a990dd';
+        break;
+      case 'Y':
+      case 'Z':
+        result = '#ab1438';
+        break;
+    }
+    return result;
+  },
 };
